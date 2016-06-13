@@ -15,6 +15,8 @@ export const Info = React.createClass({
     return (
       <div>
         <button onClick={gbmReset}>Reset</button>
+        <span>Mu: {mu}</span>
+        <span>Sigma: {sigma}</span>
         <Datatable data={gbmResult} />
       </div>
     );
@@ -24,7 +26,7 @@ export const Info = React.createClass({
 function mapStateToProps(state, props) {
   return {
     gbmParams: state.info.params,
-    gbmResult: state.info.gbm
+    gbmResult: state.info.gbm,
   };
 }
 

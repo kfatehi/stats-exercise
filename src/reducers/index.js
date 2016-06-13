@@ -1,10 +1,11 @@
-import gbm from '../gbm';
+import calcGBM from '../gbm';
 
 export function info(state = {}, action) {
   let calcState = (start, mu, sigma, duration) => {
+    let gbm = calcGBM(start, mu, sigma, duration)
     return {
+      gbm,
       params: { start, mu, sigma, duration },
-      gbm: gbm(start, mu, sigma, duration)
     }
   }
 

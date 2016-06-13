@@ -21,6 +21,7 @@
     "jstat": "^1.5.2",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
+    "rc-slider": "^3.7.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-faux-dom": "^2.5.0",

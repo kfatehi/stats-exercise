@@ -1,32 +1,30 @@
 import calcGBM from '../gbm';
 
+const defaultParams = {
+  start: 100,
+  mu: 0.05,
+  sigma: 0.15,
+  duration: 15
+}
+
 export function info(state = {}, action) {
-  let calcState = (start, mu, sigma, duration) => {
-    let gbm = calcGBM(start, mu, sigma, duration)
-    return {
-      gbm,
-      params: { start, mu, sigma, duration },
-    }
-  }
-
-  let reset = () => {
-    return calcState(100, 0.05, 0.15, 15);
-  }
-
-  let change = (newP) => {
-    let prevP = state.params;
-    let params = Object.assign({}, prevP, newP);
+  let calcState = (params) => {
     let { start, mu, sigma, duration} = params;
-    return calcState(start, mu, sigma, duration);
+    let gbm = calcGBM(start, mu, sigma, duration)
+    return { params, gbm };
+  }
+
+  let reset = (params = {}) => {
+    return calcState(Object.assign({}, defaultParams, params))
   }
 
   switch (action.type) {
     case 'INIT':
       return reset();
     case 'RESET_GBM':
-      return reset();
+      return reset(state.params);
     case 'CHANGE_GBM':
-      return reset(action);
+      return reset(action.params);
   }
   return state
 }
